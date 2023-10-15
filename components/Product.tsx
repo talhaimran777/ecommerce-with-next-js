@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import React from 'react'
-import { Product } from '../types';
 import Link from 'next/link';
+
+import { Product } from 'types/product';
 
 const Product = ({ product }: { product: Product; }) => {
   return (

@@ -1,9 +1,6 @@
-import Product from 'components/Product';
-import Wrapper from 'components/Wrapper';
-import React from 'react';
-import { Product as ProductType } from '../types';
+import { Product } from 'types/product';
 
-const products: ProductType[] = [
+export const products: Product[] = [
   {
     id: 1,
     name: 'Cool Shirt 1',
@@ -35,15 +32,3 @@ const products: ProductType[] = [
     price: 40.99,
   }
 ];
-
-const Products = () => {
-  return (
-    <Wrapper>
-      <div className='flex justify-center lg:justify-between items-center my-5 gap-5 flex-wrap'>
-        {products.map(product => <Product key={product.id} product={product} />)}
-      </div>
-    </Wrapper>
-  )
-}
-
-export default Products
