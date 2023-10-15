@@ -1,5 +1,7 @@
+import Products from "components/Products";
+
 export default function Home() {
   return (
-    <h1>Home page for ecommerce store</h1>
+    <Products />
   )
 }
