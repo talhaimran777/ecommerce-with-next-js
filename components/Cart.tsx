@@ -32,7 +32,7 @@ const Cart = () => {
     }
 
     return (
-        <div className={`h-screen fixed top-0 ${isOpen ? "-right-0" : "-right-80"}  bg-gray-100 w-80 shadow-2xl p-4 overflow-auto transition-all duration-700 ease-in-out`}>
+        <div className={`h-screen fixed top-0 ${isOpen ? "-right-0" : "-right-80"}  bg-gray-100 w-80 shadow-2xl p-4 overflow-auto transition-all duration-700 ease-in-out z-50`}>
             <button className="font-bold text-sm" onClick={() => toggleCart(!isOpen)}>Close</button>
             {items.length > 0 ? (<div>
                 {items.map(item => (

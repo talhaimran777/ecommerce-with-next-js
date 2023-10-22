@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import Navbar from '../components/Navbar'
 import Cart from 'components/Cart'
+import BackDrop from 'components/BackDrop'
 
 const montserrat = Montserrat({ subsets: ['latin'] })
 
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body className={montserrat.className}>
         <Navbar />
         <Cart />
+        <BackDrop />
         {children}
       </body>
     </html>
