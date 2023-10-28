@@ -34,6 +34,12 @@
       ],
       "store/*": [
         "./store/*"
+      ],
+      "actions/*": [
+        "./actions/*"
+      ],
+      "utils/*": [
+        "./utils/*"
       ]
     }
   },

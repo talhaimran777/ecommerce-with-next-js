@@ -1,10 +1,15 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import useCart from "store/useCart"
 import { CartItem } from "types/product";
+import { createPaymentIntent } from "actions/stripe";
+import { amountInCents } from "utils/general";
 
 const Cart = () => {
+    const router = useRouter();
+
     const { isOpen, toggleCart, items, increaseQuantity, decreaseQuantity } = useCart();
 
     const increaseItemQuantity = (item: CartItem): void => {
@@ -21,7 +26,7 @@ const Cart = () => {
         }
     }
 
-    const calculateTotalPrice = (): string => {
+    const calculateTotal = (): string => {
         let totalPrice: number = 0;
 
         items.forEach((cartItem: CartItem) => {
@@ -29,6 +34,18 @@ const Cart = () => {
         });
 
         return totalPrice.toFixed(2);
+    }
+
+    const total = calculateTotal();
+
+    const handleCheckout = async () => {
+        toggleCart(!isOpen);
+        const created = await createPaymentIntent({ amount: amountInCents(total), metadata: { total: `$${total}` } });
+        if (created) {
+            router.push("/checkout");
+        } else {
+            alert("Payment intent could be created!");
+        }
     }
 
     return (
@@ -53,10 +70,10 @@ const Cart = () => {
                         </div>
                     </div>
                 ))}
-                <p className="font-bold text-sm">Total: ${calculateTotalPrice()}</p>
-                <button className='w-full bg-black text-white py-2 rounded-md text-sm font-bold mt-3'>Checkout</button>
+                <p className="font-bold text-sm">Total: ${total}</p>
+                <button className='w-full bg-black text-white py-2 rounded-md text-sm font-bold mt-3' onClick={handleCheckout}>Checkout</button>
             </div>) : (
-                <p>Cart is empty!</p>
+                <p className="mt-2">Cart is empty!</p>
             )}
         </div>
     )
