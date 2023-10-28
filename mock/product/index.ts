@@ -1,4 +1,4 @@
-import { Product } from 'types/product';
+import { Product } from 'types/product'
 
 export const products: Product[] = [
   {
@@ -30,5 +30,5 @@ export const products: Product[] = [
     name: 'Super Shirt 5',
     imageUrl: 'https://via.placeholder.com/200x200',
     price: 40.99,
-  }
-];
+  },
+]

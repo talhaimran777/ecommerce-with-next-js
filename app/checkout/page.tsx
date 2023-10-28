@@ -1,7 +1,7 @@
+import Wrapper from 'components/Wrapper'
+
 const CheckoutPage = () => {
-    return (
-        <div>CheckoutPage</div>
-    )
+  return <Wrapper>CheckoutPage</Wrapper>
 }
 
 export default CheckoutPage
