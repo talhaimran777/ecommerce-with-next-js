@@ -60,11 +60,11 @@ const Cart = () => {
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = 'auto'
     }
-  }, [isOpen]);
+  }, [isOpen])
 
   return (
     <div
@@ -73,16 +73,16 @@ const Cart = () => {
       }  bg-gray-100 w-80 shadow-2xl p-4 overflow-auto transition-all duration-700 ease-in-out z-50`}
     >
       <Button
-        text="Close"
+        text='Close'
         action={() => toggleCart(!isOpen)}
-        className="font-bold text-sm w-[fit-content] px-3"
+        className='font-bold text-sm w-[fit-content] px-3'
       />
       {items.length > 0 ? (
         <div>
           {items.map((item) => (
             <div
               key={item.id}
-              className="flex items-center p-4 bg-white gap-3 my-4 rounded-md"
+              className='flex items-center p-4 bg-white gap-3 my-4 rounded-md'
             >
               <div>
                 <Image
@@ -92,19 +92,19 @@ const Cart = () => {
                   height={100}
                 />
               </div>
-              <div className="flex-1 flex flex-col text-xs font-medium gap-y-1">
+              <div className='flex-1 flex flex-col text-xs font-medium gap-y-1'>
                 {item.name}
-                <div className="flex items-center justify-between">
+                <div className='flex items-center justify-between'>
                   <p>Quantity: {item.quantity}</p>
-                  <div className="flex justify-between items-center gap-1">
+                  <div className='flex justify-between items-center gap-1'>
                     <div
-                      className="bg-black h-4 w-4 font-bold text-md cursor-pointer rounded-full text-white flex justify-center items-center"
+                      className='bg-black h-4 w-4 font-bold text-md cursor-pointer rounded-full text-white flex justify-center items-center'
                       onClick={decreaseItemQuantity.bind(this, item)}
                     >
                       -
                     </div>
                     <div
-                      className="bg-black h-4 w-4 font-bold text-md cursor-pointer rounded-full text-white flex justify-center items-center"
+                      className='bg-black h-4 w-4 font-bold text-md cursor-pointer rounded-full text-white flex justify-center items-center'
                       onClick={increaseItemQuantity.bind(this, item)}
                     >
                       +
@@ -115,11 +115,11 @@ const Cart = () => {
               </div>
             </div>
           ))}
-          <p className="font-bold text-sm">Total: ${total}</p>
-          <Button text="Checkout" action={handleCheckout} className="mt-3" />
+          <p className='font-bold text-sm'>Total: ${total}</p>
+          <Button text='Checkout' action={handleCheckout} className='mt-3' />
         </div>
       ) : (
-        <p className="mt-2">Cart is empty!</p>
+        <p className='mt-2'>Cart is empty!</p>
       )}
     </div>
   )

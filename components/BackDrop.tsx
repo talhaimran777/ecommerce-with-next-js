@@ -9,7 +9,7 @@ const BackDrop = () => {
 
   return (
     <div
-      className="backdrop fixed inset-0 bg-black opacity-50 z-2 pointer-events-auto"
+      className='backdrop fixed inset-0 bg-black opacity-50 z-2 pointer-events-auto'
       onClick={() => toggleCart(!isOpen)}
     ></div>
   )
