@@ -6,6 +6,8 @@ import useCart from 'store/useCart'
 import { CartItem } from 'types/product'
 import { createPaymentIntent } from 'actions/stripe'
 import { amountInCents } from 'utils/general'
+import Button from 'components/Button'
+import { useEffect } from 'react'
 
 const Cart = () => {
   const router = useRouter()
@@ -44,17 +46,25 @@ const Cart = () => {
   const total = calculateTotal()
 
   const handleCheckout = async () => {
-    toggleCart(!isOpen)
     const created = await createPaymentIntent({
       amount: amountInCents(total),
       metadata: { total: `$${total}` },
     })
     if (created) {
+      toggleCart(!isOpen)
       router.push('/checkout')
     } else {
       alert('Payment intent could be created!')
     }
   }
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isOpen]);
 
   return (
     <div
@@ -62,9 +72,11 @@ const Cart = () => {
         isOpen ? '-right-0' : '-right-80'
       }  bg-gray-100 w-80 shadow-2xl p-4 overflow-auto transition-all duration-700 ease-in-out z-50`}
     >
-      <button className="font-bold text-sm" onClick={() => toggleCart(!isOpen)}>
-        Close
-      </button>
+      <Button
+        text="Close"
+        action={() => toggleCart(!isOpen)}
+        className="font-bold text-sm w-[fit-content] px-3"
+      />
       {items.length > 0 ? (
         <div>
           {items.map((item) => (
@@ -85,18 +97,18 @@ const Cart = () => {
                 <div className="flex items-center justify-between">
                   <p>Quantity: {item.quantity}</p>
                   <div className="flex justify-between items-center gap-1">
-                    <button
+                    <div
                       className="bg-black h-4 w-4 font-bold text-md cursor-pointer rounded-full text-white flex justify-center items-center"
                       onClick={decreaseItemQuantity.bind(this, item)}
                     >
                       -
-                    </button>
-                    <button
+                    </div>
+                    <div
                       className="bg-black h-4 w-4 font-bold text-md cursor-pointer rounded-full text-white flex justify-center items-center"
                       onClick={increaseItemQuantity.bind(this, item)}
                     >
                       +
-                    </button>
+                    </div>
                   </div>
                 </div>
                 <p>Price: ${item.price}</p>
@@ -104,12 +116,7 @@ const Cart = () => {
             </div>
           ))}
           <p className="font-bold text-sm">Total: ${total}</p>
-          <button
-            className="w-full bg-black text-white py-2 rounded-md text-sm font-bold mt-3"
-            onClick={handleCheckout}
-          >
-            Checkout
-          </button>
+          <Button text="Checkout" action={handleCheckout} className="mt-3" />
         </div>
       ) : (
         <p className="mt-2">Cart is empty!</p>

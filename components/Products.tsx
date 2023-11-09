@@ -1,17 +1,17 @@
 import Product from 'components/Product'
-import Wrapper from 'components/Wrapper'
+import ContentWrapper from 'components/ContentWrapper'
 
 import { products } from 'mock/product'
 
 const Products = () => {
   return (
-    <Wrapper>
+    <ContentWrapper>
       <div className="flex justify-center lg:justify-between items-center my-5 gap-5 flex-wrap">
         {products.map((product) => (
           <Product key={product.id} product={product} />
         ))}
       </div>
-    </Wrapper>
+    </ContentWrapper>
   )
 }
 

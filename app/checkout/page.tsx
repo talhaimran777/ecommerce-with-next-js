@@ -1,7 +1,12 @@
-import Wrapper from 'components/Wrapper'
+import ContentWrapper from 'components/ContentWrapper'
+import PageWrapper from 'components/PageWrapper'
 
 const CheckoutPage = () => {
-  return <Wrapper>CheckoutPage</Wrapper>
+  return (
+    <PageWrapper>
+      <ContentWrapper>CheckoutPage</ContentWrapper>
+    </PageWrapper>
+  )
 }
 
 export default CheckoutPage
