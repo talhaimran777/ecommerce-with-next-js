@@ -1,5 +1,7 @@
 'use client'
 
+import 'react-toastify/dist/ReactToastify.css'
+
 import ContentWrapper from 'components/ContentWrapper'
 import { products } from 'mock/product'
 import { CartItem, Product } from 'types/product'
@@ -7,6 +9,7 @@ import Image from 'next/image'
 import useCart from 'store/useCart'
 import Button from 'components/Button'
 import PageWrapper from 'components/PageWrapper'
+import { toast } from 'react-toastify'
 
 const ProductDetails = ({ params }: { params: { slug: string } }) => {
   const { addToCart, items } = useCart()
@@ -20,7 +23,8 @@ const ProductDetails = ({ params }: { params: { slug: string } }) => {
 
   const addProductToCart = () => {
     const isAlreadyExists = items.find((item) => item.id === product.id)
-    if (isAlreadyExists) return alert('Already in cart. Thanks!')
+    if (isAlreadyExists)
+      return toast.info(`${product.name} is already in cart!`)
 
     const cartItem: CartItem = {
       ...product,

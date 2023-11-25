@@ -4,6 +4,7 @@ import { Montserrat } from 'next/font/google'
 import Navbar from '../components/Navbar'
 import Cart from 'components/Cart'
 import BackDrop from 'components/BackDrop'
+import { ToastContainer } from 'react-toastify'
 
 const montserrat = Montserrat({ subsets: ['latin'] })
 
@@ -24,6 +25,7 @@ export default function RootLayout({
         <Cart />
         <BackDrop />
         {children}
+        <ToastContainer />
       </body>
     </html>
   )
